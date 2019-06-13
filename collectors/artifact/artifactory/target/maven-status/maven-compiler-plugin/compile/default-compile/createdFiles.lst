@@ -1,0 +1,11 @@
+com/capitalone/dashboard/collector/ArtifactoryClient.class
+com/capitalone/dashboard/collector/DefaultArtifactoryClient.class
+com/capitalone/dashboard/Application.class
+com/capitalone/dashboard/collector/ArtifactorySettings.class
+com/capitalone/dashboard/collector/RestOperationsSupplier.class
+com/capitalone/dashboard/repository/ArtifactoryRepoRepository.class
+com/capitalone/dashboard/util/ArtifactUtil.class
+com/capitalone/dashboard/collector/ArtifactoryCollectorTask.class
+com/capitalone/dashboard/model/ArtifactoryCollector.class
+com/capitalone/dashboard/model/ArtifactoryRepo.class
+com/capitalone/dashboard/repository/ArtifactoryCollectorRepository.class
