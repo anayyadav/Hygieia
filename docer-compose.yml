@@ -1,0 +1,82 @@
+version: '3'
+services:
+  db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - "db-data2:/data/db"
+    environment:
+      - DB_DATABASE= dashboard
+      - DB_HOST= db
+      - DB_PORT= 27017
+  api:
+    build: api
+    image: hygieia-api
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+
+  ui:
+    build: UI
+    image: hygieia-ui
+    depends_on:
+      - api
+    ports:
+      - "3000:80"
+
+  appdynamics-collector:
+    build: collectors/performance/appdynamics
+    image: hygieia-appdynamics-collector
+    depends_on:
+      - db
+    environment:
+      - APD_CRON=0 0/1 * * * *
+      - APD_URLS=
+      - APD_USERNAME=
+      - APD_PASSWORD=
+      - APD_DASHBOARD_URL=
+
+  udeploy-collector:
+    build: collectors/deploy/udeploy
+    image: hygieia-udeploy-collector
+    depends_on:
+      - db
+    environment:
+      - UCD_CRON= 0 0/1 * * * *
+      - UCD_SERVER= 
+      - UCD_TOKEN= 
+
+  subversion-collector:
+    build: collectors/scm/subversion
+    image: hygieia-subversion-scm-collector
+    depends_on:
+      - db
+    environment:
+      - SUBVERSION_HOST=
+      - SUBVERSION_USERNAME=
+      - SUBVERSION_PASSWORD=
+
+  gitlab-feature-collector:
+    build: collectors/feature/gitlab
+    image: hygieia-gitlab-feature-collector
+    depends_on:
+      - db
+    environment:
+      - GITLAB_HOST=
+      - GITLAB_API_TOKEN=
+
+  gitlab-scm-collector:
+    build: collectors/scm/gitlab
+    image: hygieia-gitlab-scm-collector
+    depends_on:
+      - db
+    environment:
+      - GITLAB_HOST=
+      - GITLAB_API_TOKEN=
+
+volumes:
+  db-data2:
+  certs2:
+
