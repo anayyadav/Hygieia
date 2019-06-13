@@ -1,0 +1,7 @@
+/home/ec2-user/New/Hygieia1/collectors/scm/subversion/src/main/java/com/capitalone/dashboard/collector/SubversionSettings.java
+/home/ec2-user/New/Hygieia1/collectors/scm/subversion/src/main/java/com/capitalone/dashboard/collector/DefaultSubversionClient.java
+/home/ec2-user/New/Hygieia1/collectors/scm/subversion/src/main/java/com/capitalone/dashboard/collector/SubversionCollectorTask.java
+/home/ec2-user/New/Hygieia1/collectors/scm/subversion/src/main/java/com/capitalone/dashboard/collector/SubversionClient.java
+/home/ec2-user/New/Hygieia1/collectors/scm/subversion/src/main/java/com/capitalone/dashboard/model/SubversionRepo.java
+/home/ec2-user/New/Hygieia1/collectors/scm/subversion/src/main/java/com/capitalone/dashboard/Application.java
+/home/ec2-user/New/Hygieia1/collectors/scm/subversion/src/main/java/com/capitalone/dashboard/repository/SubversionRepoRepository.java
