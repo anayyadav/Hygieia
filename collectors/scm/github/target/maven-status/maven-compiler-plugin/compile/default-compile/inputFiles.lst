@@ -1,0 +1,9 @@
+/home/ec2-user/New/Hygieia1/collectors/scm/github/src/main/java/com/capitalone/dashboard/collector/GitHubSettings.java
+/home/ec2-user/New/Hygieia1/collectors/scm/github/src/main/java/com/capitalone/dashboard/model/GitHubRepo.java
+/home/ec2-user/New/Hygieia1/collectors/scm/github/src/main/java/com/capitalone/dashboard/collector/DefaultGitHubClient.java
+/home/ec2-user/New/Hygieia1/collectors/scm/github/src/main/java/com/capitalone/dashboard/repository/GitHubRepoRepository.java
+/home/ec2-user/New/Hygieia1/collectors/scm/github/src/main/java/com/capitalone/dashboard/Application.java
+/home/ec2-user/New/Hygieia1/collectors/scm/github/src/main/java/com/capitalone/dashboard/collector/GitHubCollectorTask.java
+/home/ec2-user/New/Hygieia1/collectors/scm/github/src/main/java/com/capitalone/dashboard/collector/RestOperationsSupplier.java
+/home/ec2-user/New/Hygieia1/collectors/scm/github/src/main/java/com/capitalone/dashboard/collector/GitHubClient.java
+/home/ec2-user/New/Hygieia1/collectors/scm/github/src/main/java/com/capitalone/dashboard/model/GitHubParsed.java
