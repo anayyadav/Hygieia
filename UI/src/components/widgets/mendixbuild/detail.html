@@ -1,0 +1,42 @@
+<widget-modal widget-modal-close="true">
+	<div class="widget-detail build-detail">
+		<div class="widget-detail-heading">
+			<div class="row">
+				<div class="col-md-4 build-desc">
+					<span class="dash-status-lg" dash-status="{{mdetail.buildPassed()}}"></span>
+					<span class="build-number">Mendix Build {{::mdetail.build.number}}</span>
+				</div>
+				<div class="col-md-3 build-time">
+					<span>{{::mdetail.build.startTime | date:'MMM d, HH:mm:ss'}}</span>
+				</div>
+				<div class="col-md-4 view-in-tool">
+					<a ng-href="{{::mdetail.build.buildUrl}}" target="_blank">
+						View in {{mdetail.buildUrlNiceName()}} <span class="fa fa-angle-right"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="widget-detail-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Package Name</th>
+						<th>Version</th>
+						<th>Package ID</th>
+						<th>Size</th>
+						<th>Creater</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{::mdetail.build.jobname}}</td>
+						<td>{{::mdetail.build.number}}</td>
+						<td>{{::mdetail.build.packageId}}</td>
+						<td>{{::mdetail.build.size}} bytes</td>
+						<td>{{::mdetail.build.logs}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</widget-modal>

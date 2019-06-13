@@ -1,0 +1,23 @@
+<style>
+        .ct-series-b .ct-bar, .ct-series-b .ct-line, .ct-series-b .ct-point, .ct-series-b .ct-slice-donut {
+			 color: green;
+        }
+    </style>
+<widget-modal widget-modal-close="true" ng-init="detail.load()">
+	<div class="widget-detail build-detail">
+		<div>
+
+			<div class="widget-heading">
+				Release Forecast
+			</div>
+			
+			<div class="widget-body">
+				<chartist class="ct-chart ct-series-b ct-major-twelfth" chartist-chart-type="Line"
+					chartist-data="detail.lineData" chartist-chart-options="detail.lineOptions">
+					
+				</chartist>
+			</div>
+        </div>		
+	</div>
+</widget-modal>
+

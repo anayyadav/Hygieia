@@ -1,0 +1,524 @@
+<style>
+    .popup {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* The actual popup */
+    .popup .popuptext {
+        visibility: hidden;
+        width: 160px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -80px;
+    }
+
+    /* Popup arrow */
+    .popup .popuptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+    }
+
+    /* Toggle this class - hide and show the popup */
+    .popup .show {
+        visibility: visible;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+    }
+
+    /* Add animation (fade in the popup) */
+    @-webkit-keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .button {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: white;
+        border: none;
+        color: black;
+        text-align: center;
+        padding: 8px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    .button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+    .button span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+
+    .button:hover span {
+        padding-right: 25px;
+    }
+
+    .button:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 100px;
+        /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: white;
+        margin: auto;
+        color: black;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: black;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+	
+
+</style>
+
+
+<div class="feature-view">
+
+    <div class="widget-body " id="left" style=" margin:0; ">
+
+        <div class="widget-body">
+            <!-- <label style=" margin-left:180px;">View in AGM</label> -->
+            <div ng-repeat="item in agileManagerView.copyAgileManagerDetails[0].hpamRelease">
+                <label >Release Status</label>
+                <a style=" color:white;float: right;" href="{{item.url}}" target="_blank">
+                    View in AGM <span class="fa fa-angle-right"></span>
+                </a>
+            </div>
+        </div>
+        <div class="widget-body left " fit-text=".build-summary-count > span" fit-text-max="40">
+            <div class="row" ng-repeat="item in agileManagerView.copyAgileManagerDetails[0].hpamRelease">
+                <div class="col-xs-3">
+                    <div><label class="align-left">Cards</label></div>
+					<div><label class="align-left">Points</label></div>
+                    <div><label class="align-left">Status</label> </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-open">
+                        <span>{{item.ne}}</span>
+                    </div>
+					<div class=" story-open">
+                        <span>{{item.nSP}}</span>
+                    </div>
+                    <div>New</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-wip">
+                        <span>{{item.In_Progress}}</span>
+                    </div>
+					 <div class=" story-wip">
+                        <span>{{item.inprogressSP}}</span>
+                    </div>
+                    <div>WIP</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-wip">
+                        <span>{{item.In_testing}}</span>
+                    </div>
+					<div class=" story-wip">
+                        <span>{{item.intestingSP}}</span>
+                    </div>
+                    <div>Testing</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-done">
+                        <span>{{item.Done}}</span>
+                    </div>
+					  <div class=" story-done">
+                        <span>{{item.doneSP}}</span>
+                    </div>
+                    <div>Done</div>
+                </div>
+				<div class="col-xs-1" ng-repeat="item in agileManagerView.copyAgileManagerDetails[0].hpamSpikedata">
+                    <div>
+                        <span style="color:red;">{{item.spikeCount}}</span>
+                    </div>
+					<div>
+                        <span style="color:red;">{{item.spikePoint}}</span>
+                    </div>
+                    <div style="color:red;">Spike</div>
+                </div>
+				
+            </div>
+        </div>
+    </div>
+	<br>
+    <div  class="widget-body " id="left" style=" margin:0;" ng-repeat="item in agileManagerView.copyAgileManagerDetails[0].hpamCurrentSprint">
+
+        <label style="text-align:left;width: 100%">Current {{item.sprintname}} Status</label>
+
+        <div class="widget-body left" fit-text=".build-summary-count > span" fit-text-max="40">
+            <div class="row" ng-repeat="item in agileManagerView.copyAgileManagerDetails[0].hpamCurrentSprint">
+                <div class="col-xs-3">
+                    <div><label class="align-left">Cards</label></div>
+					<div><label class="align-left">Points</label></div>
+                    <div><label class="align-left">Status</label> </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-open">
+                        <span>{{item.ne}}</span>
+                    </div>
+					<div class=" story-open">
+                        <span>{{item.nSP}}</span>
+                    </div>
+                    <div>New</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-wip">
+                        <span>{{item.In_Progress}}</span>
+                    </div>
+					 <div class=" story-wip">
+                        <span>{{item.inprogressSP}}</span>
+                    </div>
+                    <div>WIP</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-wip">
+                        <span>{{item.In_testing}}</span>
+                    </div>
+					<div class=" story-wip">
+                        <span>{{item.intestingSP}}</span>
+                    </div>
+                    <div>Testing</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-done">
+                        <span>{{item.Done}}</span>
+                    </div>
+					  <div class=" story-done">
+                        <span>{{item.doneSP}}</span>
+                    </div>
+                    <div>Done</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	<br>
+	<div class="widget-body ">
+        <ul class="nav nav-tabs">
+            <li class="text-standard auth-modal-tab" ng-repeat="tab in agileManagerView.minitabs"
+                ng-click="agileManagerView.miniToggleView($index)"
+                ng-class="tab.name == agileManagerView.miniWidgetView ? 'active' : ''">
+                <a class="textColor-Performance" data-toggle="tab">{{tab.name}}</a>
+            </li>
+            </span>
+        </ul>
+    </div>
+	
+	<div class="widget-body ">
+	<div class="container-fluid" ng-if="agileManagerView.miniWidgetView == agileManagerView.tab1">
+	<br>
+    <div id="left" style=" margin:0;" ng-repeat="item in agileManagerView.copyAgileManagerDetails[0].hpamFirstnext">
+	
+        <label style="text-align:left;width: 100%">{{item.sprintname}} Status</label>
+
+        <div class="widget-body left" fit-text=".build-summary-count > span" fit-text-max="40">
+            <div class="row" ng-repeat="item in agileManagerView.copyAgileManagerDetails[0].hpamFirstnext">
+                <div class="col-xs-3">
+                    <div><label class="align-left">Cards</label></div>
+					<div><label class="align-left">Points</label></div>
+                    <div><label class="align-left">Status</label> </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-open">
+                        <span>{{item.ne}}</span>
+                    </div>
+					<div class=" story-open">
+                        <span>{{item.nSP}}</span>
+                    </div>
+                    <div>New</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-wip">
+                        <span>{{item.In_Progress}}</span>
+                    </div>
+					 <div class=" story-wip">
+                        <span>{{item.inprogressSP}}</span>
+                    </div>
+                    <div>WIP</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-wip">
+                        <span>{{item.In_testing}}</span>
+                    </div>
+					<div class=" story-wip">
+                        <span>{{item.intestingSP}}</span>
+                    </div>
+                    <div>Testing</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-done">
+                        <span>{{item.Done}}</span>
+                    </div>
+					  <div class=" story-done">
+                        <span>{{item.doneSP}}</span>
+                    </div>
+                    <div>Done</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+	
+	<div class="container-fluid"  ng-if="agileManagerView.miniWidgetView == agileManagerView.tab2">
+	<br>
+	<div id="left" style=" margin:0;" ng-repeat="item in agileManagerView.copyAgileManagerDetails[0].hpamSecondnext">
+        <label style="text-align:left;width: 100%">{{item.sprintname}} Status</label>
+
+        <div class="widget-body left" fit-text=".build-summary-count > span" fit-text-max="40">
+            <div class="row" ng-repeat="item in agileManagerView.copyAgileManagerDetails[0].hpamSecondnext">
+                <div class="col-xs-3">
+                    <div><label class="align-left">Cards</label></div>
+					<div><label class="align-left">Points</label></div>
+                    <div><label class="align-left">Status</label> </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-open">
+                        <span>{{item.ne}}</span>
+                    </div>
+					<div class=" story-open">
+                        <span>{{item.nSP}}</span>
+                    </div>
+                    <div>New</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-wip">
+                        <span>{{item.In_Progress}}</span>
+                    </div>
+					 <div class=" story-wip">
+                        <span>{{item.inprogressSP}}</span>
+                    </div>
+                    <div>WIP</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-wip">
+                        <span>{{item.In_testing}}</span>
+                    </div>
+					<div class=" story-wip">
+                        <span>{{item.intestingSP}}</span>
+                    </div>
+                    <div>Testing</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-done">
+                        <span>{{item.Done}}</span>
+                    </div>
+					  <div class=" story-done">
+                        <span>{{item.doneSP}}</span>
+                    </div>
+                    <div>Done</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+	<div class="container-fluid" ng-if="agileManagerView.miniWidgetView == agileManagerView.tab3">
+	<br>
+	<div id="left" style=" margin:0;" ng-repeat="item in agileManagerView.copyAgileManagerDetails[0].hpamThirdnext">
+        <label style="text-align:left;width: 100%">{{item.sprintname}} Status</label>
+
+        <div class="widget-body left" fit-text=".build-summary-count > span" fit-text-max="40">
+            <div class="row" ng-repeat="item in agileManagerView.copyAgileManagerDetails[0].hpamThirdnext">
+                <div class="col-xs-3">
+                    <div><label class="align-left">Cards</label></div>
+					<div><label class="align-left">Points</label></div>
+                    <div><label class="align-left">Status</label> </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-open">
+                        <span>{{item.ne}}</span>
+                    </div>
+					<div class=" story-open">
+                        <span>{{item.nSP}}</span>
+                    </div>
+                    <div>New</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-wip">
+                        <span>{{item.In_Progress}}</span>
+                    </div>
+					 <div class=" story-wip">
+                        <span>{{item.inprogressSP}}</span>
+                    </div>
+                    <div>WIP</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-wip">
+                        <span>{{item.In_testing}}</span>
+                    </div>
+					<div class=" story-wip">
+                        <span>{{item.intestingSP}}</span>
+                    </div>
+                    <div>Testing</div>
+                </div>
+                <div class="col-xs-2">
+                    <div class=" story-done">
+                        <span>{{item.Done}}</span>
+                    </div>
+					  <div class=" story-done">
+                        <span>{{item.doneSP}}</span>
+                    </div>
+                    <div>Done</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+  </div>
+  </div>
+  <br>
+    <div class="widget-body left">
+        <div>
+            
+            <button id="myGV" class="button" style="vertical-align:middle; float: right;"><span>Sprint
+                    Velocity</span></button>
+			<button id="releaseForecast12" class="button" style="vertical-align:middle; float: right;" ng-click="agileManagerView.showDetail()"><span>Release Forecast</span></button>
+        </div>
+    </div>
+    <div id="myModal1" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content widget-body">
+            <span class="close">&times;</span>
+
+			<div class="widget-body">
+				 <canvas id="myChart2" style="width: 500px; height: 150px;"></canvas>
+			</div>
+        </div>
+    </div>
+	<div id="myModal12" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content widget-body">
+            <span class="close">&times;</span>
+
+			<div class="widget-body">
+				 <canvas id="mychart3" style="width: 500px; height: 150px;"></canvas>
+			</div>
+        </div>
+    </div>
+</div>
+<script>
+    // Get the modal
+    //var modal = document.getElementById('myModal');
+    var modal1 = document.getElementById('myModal1');
+	//var modal12 = document.getElementById('myModal12');
+   
+    var gv = document.getElementById("myGV");
+	//var releaseForecast = document.getElementById("releaseForecast1");
+    
+    var span1 = document.getElementsByClassName("close")[0];
+	//var span2 = document.getElementsByClassName("close")[1];
+    
+    gv.onclick = function () {
+        modal1.style.display = "block";
+    }
+	//releaseForecast1.onclick = function () {
+    //    modal12.style.display = "block";
+    //}
+    
+    span1.onclick = function () {
+        modal1.style.display = "none";
+    }
+	
+	//span2.onclick = function () {
+     //   modal12.style.display = "none";
+    //}
+    
+    window.onclick = function (event) {
+     
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+        }
+		//if (event.target == modal12) {
+        //    modal12.style.display = "none";
+        //}
+    }
+    function myFunction12() {
+        var popup = document.getElementById("myPopup12");
+        popup.classList.toggle("show");
+    }
+</script>

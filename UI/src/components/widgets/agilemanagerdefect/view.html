@@ -1,0 +1,121 @@
+<div class="feature-view">
+	<div class="widget-body ">
+        <ul class="nav nav-tabs">
+            <li class="text-standard auth-modal-tab" ng-repeat="tab in agileManagerDView.minitabs"
+                ng-click="agileManagerDView.miniToggleView($index)"
+                ng-class="tab.name == agileManagerDView.miniWidgetView ? 'active' : ''">
+                <a class="textColor-Performance" data-toggle="tab">{{tab.name}}</a>
+            </li>
+            </span>
+        </ul>
+    </div>
+	<br>
+	<div class="container-fluid" ng-if="agileManagerDView.miniWidgetView == 'Overall Defect Status'">
+		<div class="widget">
+			<div class="widget-heading" >
+					Overall Defect Status
+			</div>
+			<div class="widget-body">
+				<chartist class="ct-chart ct-major-twelfth"
+			  chartist-chart-type="Bar"
+			  chartist-data="agileManagerDView.loaddefectData"
+			  chartist-chart-options="agileManagerDView.defectOptions"
+			  chartist-events="agileManagerDView.defectEvents"></chartist>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid" ng-if="agileManagerDView.miniWidgetView == 'Current sprint Status'">
+		<div class="widget">
+			<div class="widget-heading" ng-repeat="item in agileManagerDView.copyAgileManagerDetails[0].hpamCurrentSprintDefect">
+					Current {{item.sprintname}} Status
+			</div>
+			<div class="widget-body">
+				<chartist class="ct-chart ct-major-twelfth"
+			  chartist-chart-type="Bar"
+			  chartist-data="agileManagerDView.loadCurrentSprintdefectData"
+			  chartist-chart-options="agileManagerDView.defectOptions"
+			  chartist-events="agileManagerDView.buildDurationEvents"></chartist>
+			</div>
+		</div>
+	</div>
+	
+	<div class="widget-body">
+        <ul class="nav nav-tabs" ng-init="agileManagerDView.tab='Sprint 1'">
+            <li class="text-standard auth-modal-tab"
+				ng-class="agileManagerDView.tab == item.sprintname ? 'active' : ''"
+                ng-repeat="item in agileManagerDView.copyAgileManagerDetails[0].hpamPerviousSprintDefect">
+                <a class="textColor-Performance" ng-click="agileManagerDView.tab= item.sprintname">
+                    {{item.sprintname}}</a>
+            </li>
+            </span>
+        </ul>
+	</div>
+	<br>
+	<div class="widget-body left" fit-text=".build-summary-count > span" fit-text-max="40">
+		<div ng-repeat="item in agileManagerDView.copyAgileManagerDetails[0].hpamPerviousSprintDefect" ng-show="agileManagerDView.tab === item.sprintname">
+			<div class="col-xs-2">
+				<div><label class="align-left">Defects</label></div>
+				<div><label class="align-left">Status</label> </div>
+			</div>
+			<div class="col-xs-2">
+				<div class=" story-open">
+					<span>{{item.ne}}</span>
+				</div>
+				<div>New</div>
+			</div>
+			<div class="col-xs-2">
+				<div class=" story-wip">
+					<span>{{item.open}}</span>
+				</div>
+				<div>Open</div>
+			</div>
+			<div class="col-xs-2">
+				<div class="  story-wip">
+					<span>{{item.defferred}}</span>
+				</div>
+				<div>Deferred</div>
+			</div>
+			<div class="col-xs-2">
+				<div class="  story-wip">
+					<span>{{item.pclose}}</span>
+				</div>
+				<div>Propose Close</div>
+			</div>
+			<div class="col-xs-2">
+				<div class="  story-wip">
+					<span>{{item.fixed}}</span>
+				</div>
+				<div>Fixed</div>
+			</div> 
+		</div>
+	</div>
+</div>
+<script>
+    // Get the modal
+    //var modal = document.getElementById('myModal');
+    var modal1 = document.getElementById('myModal1');
+   
+    var gv = document.getElementById("myGV");
+    
+    var span1 = document.getElementsByClassName("close")[0];
+    
+    gv.onclick = function () {
+        modal1.style.display = "block";
+    }
+    
+    span1.onclick = function () {
+        modal1.style.display = "none";
+    }
+    
+    window.onclick = function (event) {
+     
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+        }
+    }
+    function myFunction12() {
+        var popup = document.getElementById("myPopup12");
+        popup.classList.toggle("show");
+    }
+</script>
+	
